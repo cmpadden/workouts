@@ -5,6 +5,11 @@ export default {
   // Target (https://go.nuxtjs.dev/config-target)
   target: 'static',
 
+  // https://nuxtjs.org/faq/github-pages/#deploying-to-github-pages-for-repository
+  router: {
+    base: '/workouts/'
+  },
+
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     title: 'well-workouts',
