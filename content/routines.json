@@ -1,0 +1,102 @@
+[
+    {
+        "name": "The Scientific 7-Minute Workout",
+        "slug": "basic",
+        "author": "Gretchen Reynolds",
+        "description": "12 exercises deploying only body weight, a chair and a wall, it fulfills the latest mandates for high-intensity effort -- all of it based on science.",
+        "exercises": [
+            {
+                "name": "Jumping Jacks",
+                "duration": 60
+            },
+            {
+                "name": "Wall Sit",
+                "duration": 60
+            },
+            {
+                "name": "Push Ups",
+                "duration": 60
+            },
+            {
+                "name": "Abdominal Crunches",
+                "duration": 60
+            },
+            {
+                "name": "Chair Step-ups",
+                "duration": 60
+            },
+            {
+                "name": "Squats",
+                "duration": 60
+            },
+            {
+                "name": "Tricep Chair Dips",
+                "duration": 60
+            },
+            {
+                "name": "Planks",
+                "duration": 60
+            },
+            {
+                "name": "High Knees",
+                "duration": 60
+            },
+            {
+                "name": "Lunges",
+                "duration": 60
+            },
+            {
+                "name": "Rotational Push Ups",
+                "duration": 60
+            },
+            {
+                "name": "Side Planks",
+                "duration": 60
+            }
+        ]
+    },
+    {
+        "name": "The Advanced 7-Minute Workout",
+        "slug": "advanced",
+        "author": "Gretchen Reynolds",
+        "description": "A more demanding nine-step regimen than the original 7-Minute Workout, one that requires a couple of dumbbells but still takes only seven minutes.",
+        "exercises": [
+            {
+                "name": "Reverse Lunges",
+                "duration": 60
+            },
+            {
+                "name": "Lateral Pillar Bridge (Left)",
+                "duration": 60
+            },
+            {
+                "name": "Push Up, Row, Burpee",
+                "duration": 60
+            },
+            {
+                "name": "Lateral Pillar Bridge (Right)",
+                "duration": 60
+            },
+            {
+                "name": "Single Leg RDL, Curl, Press (Left)",
+                "duration": 60
+            },
+            {
+                "name": "Single Leg RDL, Curl, Press (Right)",
+                "duration": 60
+            },
+            {
+                "name": "Plank with Arm Lift",
+                "duration": 60
+            },
+            {
+                "name": "Lateral Lunge, Overhead Tricep Extension",
+                "duration": 60
+            },
+            {
+                "name": "Alternating Bentover Rows",
+                "duration": 60
+            }
+        ]
+    }
+]
