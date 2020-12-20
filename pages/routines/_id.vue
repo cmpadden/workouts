@@ -150,7 +150,7 @@ export default {
       timer: null,
       rest: false,
       rest_duration: 15,
-      bg_color: "bg-white",
+      bg_color: "bg-red-100",
     };
   },
   computed: {
@@ -211,7 +211,7 @@ export default {
       // to the beginning, and re-initialize the variables
       if (this.exercise_ix + 1 === this.routine.exercises.length) {
         this.completed = true;
-        this.bg_color = "bg-white";
+        this.bg_color = "bg-red-100";
         this.reset();
         return;
       }
