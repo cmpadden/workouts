@@ -1,7 +1,7 @@
 <template>
   <div>
     <nav
-      class="relative flex flex-wrap items-center justify-between navbar-expand-lg bg-gradient-to-r from-red-700 via-purple-500 to-blue-700 border-b-4 border-orange-500"
+      class="relative flex flex-wrap items-center justify-between navbar-expand-lg animated-gradient border-b-4 border-orange-500"
     >
       <div
         class="container px-4 mx-auto flex flex-wrap items-center justify-between"
@@ -72,3 +72,52 @@ export default {
   },
 };
 </script>
+
+<style>
+/* Let's be _extra_ with an animated gradient on the navbar, courtosy of CSS
+ * Gradient Animator: https://www.gradient-animator.com
+ */
+
+.animated-gradient {
+  background: linear-gradient(224deg, #2cd5c4, #642667, #e87722);
+  background-size: 600% 600%;
+
+  -webkit-animation: AnimationName 16s ease infinite;
+  -moz-animation: AnimationName 16s ease infinite;
+  animation: AnimationName 16s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@-moz-keyframes AnimationName {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@keyframes AnimationName {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+</style>
