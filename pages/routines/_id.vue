@@ -18,7 +18,7 @@
           </div>
 
           <!-- Routine Button Controls -->
-          <div class="py-4 flex">
+          <div class="my-4 flex">
             <div
               class="w-20 flex-1 flex items-center justify-center font-semibold uppercase cursor-pointer"
               type="button"
@@ -78,19 +78,24 @@
               </svg>
             </div>
           </div>
-          <template v-if="!routine_start">
-            <div class="m-2">
-              <div
-                class="text-center text-lg sm:text-5xl font-semibold leading-tight"
-                :class="{ 'text-red-600': seconds < 5 }"
-              >
-                {{ seconds }} seconds
-              </div>
-              <div class="text-center text-sm uppercase text-gray-600">
-                {{ exercises_remaining }} exercises remaining
-              </div>
+          <div class="mb-4">
+            <div
+              v-if="!routine_start"
+              class="text-center text-lg sm:text-5xl font-semibold leading-tight"
+              :class="{ 'text-red-600': seconds < 5 }"
+            >
+              {{ seconds }} seconds
             </div>
-          </template>
+            <div
+              v-else
+              class="text-center text-lg sm:text-5xl font-semibold leading-tight text-gray-600"
+            >
+              - seconds
+            </div>
+            <div class="text-center text-sm uppercase text-gray-600">
+              {{ exercises_remaining }} exercises remaining
+            </div>
+          </div>
         </div>
 
         <div class="max-w-xl mx-auto bg-white mb-2">
@@ -173,7 +178,7 @@ export default {
   },
   methods: {
     activate_timer() {
-      this.timer = setInterval(() => this.countdown(), 10);
+      this.timer = setInterval(() => this.countdown(), 1000);
     },
     deactivate_timer() {
       clearInterval(this.timer);
