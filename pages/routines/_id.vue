@@ -21,7 +21,6 @@
           <div class="my-4 flex">
             <div
               class="w-20 flex-1 flex items-center justify-center font-semibold uppercase cursor-pointer"
-              type="button"
               @click="back"
             >
               <svg
@@ -43,7 +42,6 @@
             <div
               v-if="this.timer === null"
               class="h-10 w-20 flex-1 flex items-center justify-center border-2 border-green-600 text-green-600 font-semibold uppercase cursor-pointer"
-              type="button"
               @click="start"
             >
               Start
@@ -51,14 +49,12 @@
             <div
               v-else
               class="h-10 w-20 flex-1 flex items-center justify-center bg-purple-600 text-white font-semibold uppercase cursor-pointer"
-              type="button"
               @click="pause"
             >
               Pause
             </div>
             <div
               class="w-20 flex-1 flex items-center justify-center font-semibold uppercase cursor-pointer"
-              type="button"
               @click="next(true)"
             >
               Skip

@@ -21,7 +21,6 @@
           <div class="flex">
             <NuxtLink
               class="mx-4 mb-4 px-4 py-1 text-sm text-orange-600 font-semibold border border-orange-600 hover:bg-orange-200 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2"
-              type="button"
               :to="`/routines/${w.slug}`"
             >
               Let's Go!</NuxtLink
