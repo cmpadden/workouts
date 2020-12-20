@@ -12,13 +12,37 @@
 
       <div class="max-w-xl mx-auto shadow-md">
         <div class="bg-gray-200 border-b-2 border-gray-500">
+          <!-- Routine Title -->
           <div class="text-lg text-center font-bold uppercase text-gray-600">
             {{ routine.name }}
           </div>
-          <div class="flex justify-between justify-center">
+
+          <!-- Routine Button Controls -->
+          <div class="py-4 flex">
+            <div
+              class="w-20 flex-1 flex items-center justify-center font-semibold uppercase cursor-pointer"
+              type="button"
+              @click="back"
+            >
+              <svg
+                class="h-4 w-4 ml-2"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 19l-7-7 7-7"
+                />
+              </svg>
+              Back
+            </div>
             <div
               v-if="this.timer === null"
-              class="rounded-full h-20 w-20 flex items-center justify-center bg-green-600 border-4 border-green-700 text-white font-semibold uppercase m-2 cursor-pointer"
+              class="h-10 w-20 flex-1 flex items-center justify-center border-2 border-green-600 text-green-600 font-semibold uppercase cursor-pointer"
               type="button"
               @click="start"
             >
@@ -26,26 +50,47 @@
             </div>
             <div
               v-else
-              class="rounded-full h-20 w-20 flex items-center justify-center bg-purple-600 border-4 border-purple-900 text-white font-semibold uppercase m-2 cursor-pointer"
+              class="h-10 w-20 flex-1 flex items-center justify-center bg-purple-600 text-white font-semibold uppercase cursor-pointer"
               type="button"
               @click="pause"
             >
               Pause
             </div>
-            <template v-if="!routine_start">
-              <div class="m-2">
-                <div
-                  class="text-right text-lg sm:text-5xl font-semibold leading-tight"
-                  :class="{ 'text-red-600': seconds < 5 }"
-                >
-                  {{ seconds }} seconds
-                </div>
-                <div class="text-right text-sm uppercase text-gray-600">
-                  {{ exercises_remaining }} exercises remaining
-                </div>
-              </div>
-            </template>
+            <div
+              class="w-20 flex-1 flex items-center justify-center font-semibold uppercase cursor-pointer"
+              type="button"
+              @click="next(true)"
+            >
+              Skip
+              <svg
+                class="h-4 w-4 ml-2"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </div>
           </div>
+          <template v-if="!routine_start">
+            <div class="m-2">
+              <div
+                class="text-center text-lg sm:text-5xl font-semibold leading-tight"
+                :class="{ 'text-red-600': seconds < 5 }"
+              >
+                {{ seconds }} seconds
+              </div>
+              <div class="text-center text-sm uppercase text-gray-600">
+                {{ exercises_remaining }} exercises remaining
+              </div>
+            </div>
+          </template>
         </div>
 
         <div class="max-w-xl mx-auto bg-white mb-2">
@@ -109,11 +154,7 @@ export default {
   },
   computed: {
     current_exercise() {
-      if (this.routine_start) {
-        return "N/A";
-      } else {
-        return this.routine.exercises[this.exercise_ix].name;
-      }
+      return this.routine.exercises[this.exercise_ix].name;
     },
     exercises_remaining() {
       return this.routine.exercises.length - this.exercise_ix - 1;
@@ -132,7 +173,7 @@ export default {
   },
   methods: {
     activate_timer() {
-      this.timer = setInterval(() => this.countdown(), 1000);
+      this.timer = setInterval(() => this.countdown(), 10);
     },
     deactivate_timer() {
       clearInterval(this.timer);
@@ -152,31 +193,46 @@ export default {
       this.bg_color = "bg-blue-200";
       this.deactivate_timer();
     },
+    reset() {
+      this.deactivate_timer();
+      this.exercise_ix = 0;
+      this.routine_start = true;
+      this.rest = false;
+    },
+    back() {
+      if (this.exercise_ix > 0) {
+        this.exercise_ix -= 1;
+        this.seconds = this.routine.exercises[this.exercise_ix].duration;
+      }
+    },
+    next(skip_rest = false) {
+      // do not exceed the number of exercises in routine, instead loop back
+      // to the beginning, and re-initialize the variables
+      if (this.exercise_ix + 1 === this.routine.exercises.length) {
+        this.completed = true;
+        this.bg_color = "bg-white";
+        this.reset();
+        return;
+      }
+
+      // If we have not yet completed the routine, the load the next
+      // exercise, or rest period -- alternative between the two
+      if (this.rest || skip_rest) {
+        this.rest = false;
+        this.exercise_ix += 1;
+        this.seconds = this.routine.exercises[this.exercise_ix].duration;
+      } else {
+        this.rest = true;
+        this.seconds = this.rest_duration;
+      }
+    },
     countdown() {
+      // Decrement the counter on callback, or if the counter has ended, then
+      // progress to the next exercise or rest period
       if (this.seconds > 0) {
         this.seconds--;
       } else {
-        // If we have completed the routine, set the `completed` boolean, and
-        // re-initialize variables
-        if (this.exercise_ix + 1 == this.routine.exercises.length) {
-          this.deactivate_timer();
-          this.exercise_ix = 0;
-          this.routine_start = true;
-          this.completed = true;
-          this.bg_color = "bg-white";
-          return;
-        }
-
-        // If we have not yet completed the routine, the load the next
-        // exercise, or rest period -- alternative between the two
-        if (this.rest) {
-          this.rest = false;
-          this.exercise_ix += 1;
-          this.seconds = this.routine.exercises[this.exercise_ix].duration;
-        } else {
-          this.rest = true;
-          this.seconds = this.rest_duration;
-        }
+        this.next();
       }
     },
   },
