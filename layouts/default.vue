@@ -1,7 +1,9 @@
 <template>
   <div>
     <NavBar />
-    <Nuxt />
+    <div class="h-screen bg-red-100">
+      <Nuxt />
+    </div>
   </div>
 </template>
 
