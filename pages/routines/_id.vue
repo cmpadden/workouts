@@ -12,6 +12,9 @@
 
       <div class="max-w-xl mx-auto shadow-md">
         <div class="bg-gray-200 border-b-2 border-gray-500">
+          <div class="text-lg text-center font-bold uppercase text-gray-600">
+            {{ routine.name }}
+          </div>
           <div class="flex justify-between justify-center">
             <div
               v-if="this.timer === null"
