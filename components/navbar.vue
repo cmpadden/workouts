@@ -1,7 +1,7 @@
 <template>
   <div>
     <nav
-      class="relative flex flex-wrap items-center justify-between navbar-expand-lg bg-gradient-to-r from-red-700 via-purple-500 to-blue-700 border-b-4 border-orange-500 mb-3"
+      class="relative flex flex-wrap items-center justify-between navbar-expand-lg bg-gradient-to-r from-red-700 via-purple-500 to-blue-700 border-b-4 border-orange-500"
     >
       <div
         class="container px-4 mx-auto flex flex-wrap items-center justify-between"

@@ -1,78 +1,79 @@
 <template>
   <div>
-    <NavBar />
-    <div
-      v-if="completed"
-      class="max-w-xl mx-auto rounded-lg shadow-md bg-green-200 p-4 mb-2"
-    >
-      <div class="text-xl text-bold text-center text-green-600">
-        Congrats! You've completed the routine!
-      </div>
-    </div>
-
-    <div class="max-w-xl mx-auto shadow-md">
-      <div class="bg-gray-200 border-b-2 border-gray-500">
-        <div class="flex justify-between justify-center">
-          <div
-            v-if="this.timer === null"
-            class="rounded-full h-20 w-20 flex items-center justify-center bg-green-600 border-4 border-green-700 text-white font-semibold uppercase m-2 cursor-pointer"
-            type="button"
-            @click="start"
-          >
-            Start
-          </div>
-          <div
-            v-else
-            class="rounded-full h-20 w-20 flex items-center justify-center bg-purple-600 border-4 border-purple-900 text-white font-semibold uppercase m-2 cursor-pointer"
-            type="button"
-            @click="pause"
-          >
-            Pause
-          </div>
-          <template v-if="!routine_start">
-            <div class="m-2">
-              <div
-                class="text-right text-lg sm:text-5xl font-semibold leading-tight"
-                :class="{ 'text-red-600': seconds < 5 }"
-              >
-                {{ seconds }} seconds
-              </div>
-              <div class="text-right text-sm uppercase text-gray-600">
-                {{ exercises_remaining }} exercises remaining
-              </div>
-            </div>
-          </template>
+    <div :class="bg_color" class="h-screen p-4">
+      <div
+        v-if="completed"
+        class="max-w-xl mx-auto rounded-lg shadow-md bg-green-200 p-4 mb-2"
+      >
+        <div class="text-xl text-bold text-center text-green-600">
+          Congrats! You've completed the routine!
         </div>
       </div>
 
-      <div class="max-w-xl mx-auto bg-white mb-2">
-        <div>
-          <div class="text-lg text-center font-bold uppercase text-gray-600">
-            Exercise:
-          </div>
-          <template v-if="rest">
-            <div class="text-5xl text-center uppercase">Rest...</div>
-          </template>
-          <template v-else>
-            <div class="text-5xl text-center font-bold uppercase">
-              {{ current_exercise }}
+      <div class="max-w-xl mx-auto shadow-md">
+        <div class="bg-gray-200 border-b-2 border-gray-500">
+          <div class="flex justify-between justify-center">
+            <div
+              v-if="this.timer === null"
+              class="rounded-full h-20 w-20 flex items-center justify-center bg-green-600 border-4 border-green-700 text-white font-semibold uppercase m-2 cursor-pointer"
+              type="button"
+              @click="start"
+            >
+              Start
             </div>
-            <!-- <div class="p-2"> -->
-            <!--   <img -->
-            <!--     class="object-contain h-40 w-full" -->
-            <!--     src="https://via.placeholder.com/500" -->
-            <!--   ></img> -->
-            <!-- </div> -->
-          </template>
-        </div>
-        <div class="">
-          <div class="text-lg text-center font-bold uppercase text-gray-600">
-            Coming Up
+            <div
+              v-else
+              class="rounded-full h-20 w-20 flex items-center justify-center bg-purple-600 border-4 border-purple-900 text-white font-semibold uppercase m-2 cursor-pointer"
+              type="button"
+              @click="pause"
+            >
+              Pause
+            </div>
+            <template v-if="!routine_start">
+              <div class="m-2">
+                <div
+                  class="text-right text-lg sm:text-5xl font-semibold leading-tight"
+                  :class="{ 'text-red-600': seconds < 5 }"
+                >
+                  {{ seconds }} seconds
+                </div>
+                <div class="text-right text-sm uppercase text-gray-600">
+                  {{ exercises_remaining }} exercises remaining
+                </div>
+              </div>
+            </template>
           </div>
-          <div class="flex justify-center">
-            <div v-for="e in exercise_window" :key="e.name" class="m-2 p-2">
-              <div class="uppercase text-gray-600 text-sm text-center">
-                {{ e.name }} ({{ e.duration }}s)
+        </div>
+
+        <div class="max-w-xl mx-auto bg-white mb-2">
+          <div>
+            <div class="text-lg text-center font-bold uppercase text-gray-600">
+              Exercise:
+            </div>
+            <template v-if="rest">
+              <div class="text-5xl text-center uppercase">Rest...</div>
+            </template>
+            <template v-else>
+              <div class="text-5xl text-center font-bold uppercase">
+                {{ current_exercise }}
+              </div>
+              <!-- <div class="p-2"> -->
+              <!--   <img -->
+              <!--     class="object-contain h-40 w-full" -->
+              <!--     src="https://via.placeholder.com/500" -->
+              <!--   ></img> -->
+              <!-- </div> -->
+            </template>
+          </div>
+          <div class="">
+            <div class="text-lg text-center font-bold uppercase text-gray-600">
+              Coming Up
+            </div>
+            <div class="flex justify-center">
+              <div v-for="e in exercise_window" :key="e.name" class="m-2 p-2">
+                <div class="uppercase text-gray-600 text-sm text-center">
+                  {{ e.name }} ({{ e.duration }}s)
+                </div>
               </div>
             </div>
           </div>
@@ -83,11 +84,7 @@
 </template>
 
 <script>
-import NavBar from "@/components/navbar.vue";
 export default {
-  components: {
-    NavBar,
-  },
   async asyncData({ params, $content }) {
     const routine = await $content("routines")
       .where({ slug: params.id })
@@ -104,6 +101,7 @@ export default {
       timer: null,
       rest: false,
       rest_duration: 15,
+      bg_color: "bg-white",
     };
   },
   computed: {
@@ -144,11 +142,11 @@ export default {
         this.completed = false;
         this.routine_start = false;
       }
-      document.body.className = "bg-green-200";
+      this.bg_color = "bg-green-200";
       this.activate_timer();
     },
     pause() {
-      document.body.className = "bg-blue-200";
+      this.bg_color = "bg-blue-200";
       this.deactivate_timer();
     },
     countdown() {
@@ -162,7 +160,7 @@ export default {
           this.exercise_ix = 0;
           this.routine_start = true;
           this.completed = true;
-          document.body.className = "bg-white";
+          this.bg_color = "bg-white";
           return;
         }
 

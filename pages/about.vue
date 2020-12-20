@@ -1,6 +1,5 @@
 <template>
   <div>
-    <NavBar />
     <div class="max-w-md mx-auto p-4 mb-2">
       <div class="text-md tracking-tight text-blue-700 font-bold font-mono">
         This website was constructed as an exercise in using Vue.js and learning
@@ -33,15 +32,3 @@
     </div>
   </div>
 </template>
-
-<style>
-</style>
-
-<script>
-import NavBar from "@/components/navbar.vue";
-export default {
-  components: {
-    NavBar,
-  },
-};
-</script>
