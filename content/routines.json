@@ -7,51 +7,63 @@
         "exercises": [
             {
                 "name": "Jumping Jacks",
-                "duration": 60
+                "duration": 60,
+                "giphy": "https://giphy.com/embed/gWNr07kKBUM3S"
             },
             {
                 "name": "Wall Sit",
-                "duration": 60
+                "duration": 60,
+                "giphy": "https://giphy.com/embed/O7Mp1I0LRfOGk"
             },
             {
                 "name": "Push Ups",
-                "duration": 60
+                "duration": 60,
+                "giphy": "https://giphy.com/embed/eK12uCsrAh4wmTXejp"
             },
             {
                 "name": "Abdominal Crunches",
-                "duration": 60
+                "duration": 60,
+                "giphy": "https://giphy.com/embed/9P3fmwZor3yRLONP8v"
             },
             {
                 "name": "Chair Step-ups",
-                "duration": 60
+                "duration": 60,
+                "giphy": "https://giphy.com/embed/9Ji1s0nTBLlKQEhpLu"
             },
             {
                 "name": "Squats",
-                "duration": 60
+                "duration": 60,
+                "giphy": "https://giphy.com/embed/17C41UvchStTkd92UQ"
             },
             {
                 "name": "Tricep Chair Dips",
-                "duration": 60
+                "duration": 60,
+                "giphy": "https://giphy.com/embed/4ie9WnIpTHWUg"
             },
             {
                 "name": "Planks",
-                "duration": 60
+                "duration": 60,
+                "giphy": "https://giphy.com/embed/Qw4X3FHASsw4VxkR7he"
             },
             {
                 "name": "High Knees",
-                "duration": 60
+                "duration": 60,
+                "giphy": "https://giphy.com/embed/69wbLW7Cfx8WQ69jln"
             },
             {
                 "name": "Lunges",
-                "duration": 60
+                "duration": 60,
+                "giphy": "https://giphy.com/embed/YFCH7PW1X2XYc"
             },
             {
                 "name": "Rotational Push Ups",
-                "duration": 60
+                "duration": 60,
+                "giphy": "https://giphy.com/embed/KPgOYtIRnFOOk"
             },
             {
                 "name": "Side Planks",
-                "duration": 60
+                "duration": 60,
+                "giphy": "https://giphy.com/embed/YR21YwkVnlZc7hnri4"
             }
         ]
     },
@@ -63,39 +75,48 @@
         "exercises": [
             {
                 "name": "Reverse Lunges",
-                "duration": 60
+                "duration": 60,
+                "giphy": ""
             },
             {
                 "name": "Lateral Pillar Bridge (Left)",
-                "duration": 60
+                "duration": 60,
+                "giphy": ""
             },
             {
                 "name": "Push Up, Row, Burpee",
-                "duration": 60
+                "duration": 60,
+                "giphy": ""
             },
             {
                 "name": "Lateral Pillar Bridge (Right)",
-                "duration": 60
+                "duration": 60,
+                "giphy": ""
             },
             {
                 "name": "Single Leg RDL, Curl, Press (Left)",
-                "duration": 60
+                "duration": 60,
+                "giphy": ""
             },
             {
                 "name": "Single Leg RDL, Curl, Press (Right)",
-                "duration": 60
+                "duration": 60,
+                "giphy": ""
             },
             {
                 "name": "Plank with Arm Lift",
-                "duration": 60
+                "duration": 60,
+                "giphy": ""
             },
             {
                 "name": "Lateral Lunge, Overhead Tricep Extension",
-                "duration": 60
+                "duration": 60,
+                "giphy": ""
             },
             {
                 "name": "Alternating Bentover Rows",
-                "duration": 60
+                "duration": 60,
+                "giphy": ""
             }
         ]
     }

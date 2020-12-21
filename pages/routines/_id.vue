@@ -103,15 +103,14 @@
               <div class="text-5xl text-center uppercase">Rest...</div>
             </template>
             <template v-else>
-              <div class="text-5xl text-center font-bold uppercase">
+              <div
+                class="text-2xl sm:text-5xl text-center text-orange-600 font-bold uppercase"
+              >
                 {{ current_exercise }}
               </div>
-              <!-- <div class="p-2"> -->
-              <!--   <img -->
-              <!--     class="object-contain h-40 w-full" -->
-              <!--     src="https://via.placeholder.com/500" -->
-              <!--   ></img> -->
-              <!-- </div> -->
+              <template v-if="current_giphy != ''">
+                <Giphy :url="current_giphy" />
+              </template>
             </template>
           </div>
           <div class="">
@@ -133,7 +132,12 @@
 </template>
 
 <script>
+import Giphy from "@/components/giphy.vue";
+
 export default {
+  components: {
+    Giphy,
+  },
   async asyncData({ params, $content }) {
     const routine = await $content("routines")
       .where({ slug: params.id })
@@ -156,6 +160,10 @@ export default {
   computed: {
     current_exercise() {
       return this.routine.exercises[this.exercise_ix].name;
+    },
+    current_giphy() {
+      // TODO - default if empty
+      return this.routine.exercises[this.exercise_ix].giphy;
     },
     exercises_remaining() {
       return this.routine.exercises.length - this.exercise_ix - 1;
